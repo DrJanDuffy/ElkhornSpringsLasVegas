@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Menu, Phone } from "lucide-react";
+import { TrackedTelLink } from "@/components/integrations/TrackedTelLink";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -27,7 +28,7 @@ const nav = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 shadow-sm shadow-black/[0.03] backdrop-blur-md supports-[backdrop-filter]:bg-background/75 dark:shadow-black/20">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
         <Link href="/" className="font-semibold tracking-tight">
           <span className="block text-sm text-muted-foreground sm:text-xs">
@@ -46,15 +47,15 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Button size="sm" className="hidden sm:inline-flex" asChild>
-            <a href={`tel:${phones.primaryCtaTel}`}>
+            <TrackedTelLink href={`tel:${phones.primaryCtaTel}`}>
               <Phone className="mr-1 size-4" aria-hidden />
               Call {phones.primaryCta}
-            </a>
+            </TrackedTelLink>
           </Button>
           <Button size="icon" variant="outline" className="sm:hidden" asChild>
-            <a href={`tel:${phones.primaryCtaTel}`} aria-label={`Call ${phones.primaryCta}`}>
+            <TrackedTelLink href={`tel:${phones.primaryCtaTel}`} aria-label={`Call ${phones.primaryCta}`}>
               <Phone className="size-4" />
-            </a>
+            </TrackedTelLink>
           </Button>
 
           <Sheet>
@@ -79,7 +80,7 @@ export function SiteHeader() {
                 ))}
               </nav>
               <Button className="mt-6 w-full" asChild>
-                <a href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</a>
+                <TrackedTelLink href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</TrackedTelLink>
               </Button>
             </SheetContent>
           </Sheet>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TrackedTelLink } from "@/components/integrations/TrackedTelLink";
 import { Button } from "@/components/ui/button";
 import { createMetadata, defaultOpenGraph, siteMetadataBase } from "@/lib/metadata";
 import { agent, phones, siteIdentity } from "@/lib/site-contact";
@@ -62,7 +63,7 @@ export default function AboutPage() {
 
       <section className="flex flex-col gap-3 sm:flex-row">
         <Button asChild>
-          <a href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</a>
+          <TrackedTelLink href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</TrackedTelLink>
         </Button>
         <Button variant="outline" asChild>
           <Link href="/contact">Request a consult</Link>

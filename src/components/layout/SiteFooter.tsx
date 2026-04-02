@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedTelLink } from "@/components/integrations/TrackedTelLink";
 import { agent, emails, formatNapLine, phones, siteIdentity } from "@/lib/site-contact";
 
 const explore = [
@@ -11,7 +12,7 @@ const explore = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t bg-muted/30">
+    <footer className="relative border-t border-border/80 bg-gradient-to-b from-muted/40 to-muted/60 dark:from-muted/20 dark:to-muted/35">
       <div className="mx-auto max-w-6xl space-y-10 px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
@@ -25,12 +26,12 @@ export function SiteFooter() {
               {agent.brokerage}
             </p>
             <p className="mt-4 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-4">
-              <a className="text-primary underline-offset-4 hover:underline" href={`tel:${phones.primaryCtaTel}`}>
+              <TrackedTelLink className="text-primary underline-offset-4 hover:underline" href={`tel:${phones.primaryCtaTel}`}>
                 Call {phones.primaryCta}
-              </a>
-              <a className="text-primary underline-offset-4 hover:underline" href={`tel:${phones.professionalTel}`}>
+              </TrackedTelLink>
+              <TrackedTelLink className="text-primary underline-offset-4 hover:underline" href={`tel:${phones.professionalTel}`}>
                 Office / direct {phones.professional}
-              </a>
+              </TrackedTelLink>
               <a
                 className="text-primary underline-offset-4 hover:underline"
                 href={`mailto:${emails.primary}`}

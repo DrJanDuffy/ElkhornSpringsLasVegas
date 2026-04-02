@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { CallActionScript } from "@/components/integrations/CallActionScript";
+import { Ga4Script } from "@/components/integrations/Ga4Script";
 import { GtmNoscript, GtmScript } from "@/components/integrations/GtmScript";
+import { PerformanceHints } from "@/components/integrations/PerformanceHints";
 import { JsonLd } from "@/components/integrations/JsonLd";
 import { RealScoutLoader } from "@/components/integrations/RealScoutLoader";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
@@ -23,6 +25,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f6f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#141a18" },
+  ],
+};
 
 export const metadata: Metadata = createMetadata({
   title: {
@@ -48,9 +59,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <PerformanceHints />
+      </head>
       <body className="min-h-full flex flex-col pb-20 sm:pb-0">
         <JsonLd data={localBusinessAndAgentJsonLd()} />
         <GtmScript />
+        <Ga4Script />
         <GtmNoscript />
         <RealScoutLoader />
         <CallActionScript />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { TrackedTelLink } from "@/components/integrations/TrackedTelLink";
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/integrations/JsonLd";
 import { createMetadata, defaultOpenGraph, siteMetadataBase } from "@/lib/metadata";
@@ -83,7 +84,7 @@ export default async function NeighborhoodDetailPage({ params }: Props) {
             <Link href="/homes-for-sale">Browse active listings</Link>
           </Button>
           <Button variant="outline" asChild>
-            <a href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</a>
+            <TrackedTelLink href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</TrackedTelLink>
           </Button>
         </div>
       </section>

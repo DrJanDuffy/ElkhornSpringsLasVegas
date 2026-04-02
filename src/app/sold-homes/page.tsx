@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TrackedTelLink } from "@/components/integrations/TrackedTelLink";
 import { Button } from "@/components/ui/button";
 import { createMetadata, defaultOpenGraph, siteMetadataBase } from "@/lib/metadata";
 import { agent, phones, siteIdentity } from "@/lib/site-contact";
@@ -48,7 +49,7 @@ export default function SoldHomesPage() {
           comps for your village and verifies adjustments with you before you choose a list price.
         </p>
         <Button variant="outline" asChild>
-          <a href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</a>
+          <TrackedTelLink href={`tel:${phones.primaryCtaTel}`}>Call {phones.primaryCta}</TrackedTelLink>
         </Button>
       </section>
     </div>

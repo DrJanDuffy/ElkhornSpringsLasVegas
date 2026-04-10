@@ -22,7 +22,7 @@ export type OpenHouseEventInput = {
   isOnline?: boolean;
 };
 
-export type ValidatedOpenHouseEvent = OpenHouseEventInput & { isOnline?: false };
+export type ValidatedOpenHouseEvent = Omit<OpenHouseEventInput, "isOnline">;
 
 export const openHouseHeadline = `Open houses in ${siteIdentity.primaryArea} (${siteIdentity.zip})`;
 
@@ -60,7 +60,12 @@ export function getValidatedOpenHouseEvents(): ValidatedOpenHouseEvent[] | null 
     if (!e.name?.trim() || !e.streetAddress?.trim()) return null;
     if (!isValidIsoDate(e.startDate) || !isValidIsoDate(e.endDate)) return null;
     if (e.isOnline) return null;
-    out.push({ ...e, name: e.name.trim(), streetAddress: e.streetAddress.trim() });
+    out.push({
+      name: e.name.trim(),
+      streetAddress: e.streetAddress.trim(),
+      startDate: e.startDate,
+      endDate: e.endDate,
+    });
   }
   return out;
 }

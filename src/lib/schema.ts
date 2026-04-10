@@ -75,6 +75,42 @@ export function faqPageJsonLd(faqs: { question: string; answer: string }[]) {
   };
 }
 
+export type OpenHouseEventForSchema = {
+  name: string;
+  startDate: string;
+  endDate: string;
+  streetAddress: string;
+};
+
+export function openHouseEventsJsonLd(events: OpenHouseEventForSchema[]) {
+  const agentId = `${siteUrl}/#agent`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": events.map((e, i) => ({
+      "@type": "Event",
+      "@id": `${siteUrl}/#openhouse-event-${i + 1}`,
+      name: e.name,
+      startDate: e.startDate,
+      endDate: e.endDate,
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      location: {
+        "@type": "Place",
+        name: e.name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: e.streetAddress,
+          addressLocality: siteIdentity.city,
+          addressRegion: siteIdentity.state,
+          postalCode: siteIdentity.zip,
+          addressCountry: siteIdentity.country,
+        },
+      },
+      organizer: { "@type": "RealEstateAgent", "@id": agentId },
+    })),
+  };
+}
+
 export function blogPostingJsonLd(input: {
   headline: string;
   description: string;

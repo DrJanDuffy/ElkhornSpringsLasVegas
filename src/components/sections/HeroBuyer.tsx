@@ -55,6 +55,14 @@ export function HeroBuyer() {
               a recycled portal blurb. Search listings, compare villages, or call{" "}
               <span className="font-medium text-foreground">{phones.primaryCta}</span> for a curated short list.
             </p>
+            <p className="text-sm font-medium">
+              <Link
+                href="#open-houses"
+                className="text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                Open houses this weekend — map &amp; times
+              </Link>
+            </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
